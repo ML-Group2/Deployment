@@ -1,0 +1,44 @@
+# Node
+node_modules/
+
+# Next.js
+.next/
+.next-static/
+out/
+
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Local caches
+.npm-cache/
+.pnpm-cache/
+
+# Vercel / deployment
+.vercel/
+
+# Coverage
+coverage/
+
+# Misc
+*.local
+*.swp
+*.swo
+
+
