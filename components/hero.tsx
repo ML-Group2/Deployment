@@ -1,7 +1,6 @@
 "use client"
 import { ArrowRight, Zap, BarChart3, Cpu, Sparkles } from "lucide-react"
 import { useEffect, useState } from "react"
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"
 
 interface HeroProps {
   setCurrentPage: (page: string) => void
@@ -20,9 +19,14 @@ export default function Hero({ setCurrentPage }: HeroProps) {
   }, [])
 
   return (
-    <BackgroundGradientAnimation
-      containerClassName="min-h-[calc(100vh-64px)]"
-    >
+    <section className="min-h-[calc(100vh-64px)] relative overflow-hidden">
+      <div className="absolute inset-0 gradient-mesh" />
+
+      {/* Floating animated shapes */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float-delayed" />
+      <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+
       <div className="relative z-10 flex items-center justify-center px-4 py-20 min-h-[calc(100vh-64px)]">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4 animate-slide-up">
@@ -105,6 +109,6 @@ export default function Hero({ setCurrentPage }: HeroProps) {
           </div>
         </div>
       </div>
-    </BackgroundGradientAnimation>
+    </section>
   )
 }
