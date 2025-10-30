@@ -1,0 +1,35 @@
+0 verbose cli /opt/homebrew/Cellar/node/23.11.0/bin/node /opt/homebrew/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v23.11.0
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/calebokwesiearthur/Desktop/Machine_Learning_Midsem/Group/Deployment/.npmrc
+5 silly config load:file:/Users/calebokwesiearthur/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm exec shadcn@latest add https://v0.app/chat/b/b_TSv8nwEPE39?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..r4pAhTz057-VhGId.mY3oyEZvJCeIvNa3hCuC5VBa4imBEVRJcpXbo-OkZlah2aAmqZfbn5uniQU.xkItLXw4QMDk19OfZO97zQ
+8 verbose argv "exec" "--" "shadcn@latest" "add" "https://v0.app/chat/b/b_TSv8nwEPE39?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..r4pAhTz057-VhGId.mY3oyEZvJCeIvNa3hCuC5VBa4imBEVRJcpXbo-OkZlah2aAmqZfbn5uniQU.xkItLXw4QMDk19OfZO97zQ"
+9 verbose logfile logs-max:10 dir:/Users/calebokwesiearthur/Desktop/Machine_Learning_Midsem/Group/Deployment/.npm-cache/_logs/2025-10-30T22_40_23_763Z-
+10 verbose logfile /Users/calebokwesiearthur/Desktop/Machine_Learning_Midsem/Group/Deployment/.npm-cache/_logs/2025-10-30T22_40_23_763Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 http fetch GET 200 https://registry.npmjs.org/shadcn 418ms (cache miss)
+14 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+15 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+16 http fetch GET 200 https://registry.npmjs.org/npm 811ms
+17 verbose stack Error: canceled
+17 verbose stack     at exec (/opt/homebrew/lib/node_modules/npm/node_modules/libnpmexec/lib/index.js:286:19)
+17 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+17 verbose stack     at async Npm.exec (/opt/homebrew/lib/node_modules/npm/lib/npm.js:207:9)
+17 verbose stack     at async module.exports (/opt/homebrew/lib/node_modules/npm/lib/cli/entry.js:74:5)
+18 error canceled
+19 verbose cwd /Users/calebokwesiearthur/Desktop/Machine_Learning_Midsem/Group/Deployment
+20 verbose os Darwin 25.0.0
+21 verbose node v23.11.0
+22 verbose npm  v10.9.2
+23 notice
+23 notice New [31mmajor[39m version of npm available! [31m10.9.2[39m -> [34m11.6.2[39m
+23 notice Changelog: [34mhttps://github.com/npm/cli/releases/tag/v11.6.2[39m
+23 notice To update run: [4mnpm install -g npm@11.6.2[24m
+23 notice  { force: true, [Symbol(proc-log.meta)]: true }
+24 verbose exit 1
+25 verbose code 1
+26 error A complete log of this run can be found in: /Users/calebokwesiearthur/Desktop/Machine_Learning_Midsem/Group/Deployment/.npm-cache/_logs/2025-10-30T22_40_23_763Z-debug-0.log
