@@ -29,6 +29,7 @@ Thumbs.db
 # Local caches
 .npm-cache/
 .pnpm-cache/
+.pnpm-store/
 
 # Vercel / deployment
 .vercel/
