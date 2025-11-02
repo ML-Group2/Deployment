@@ -28,7 +28,7 @@ export default function Navigation({ currentPage, setCurrentPage }: NavigationPr
               <Zap className="text-white w-6 h-6" />
             </div>
             <span className="font-bold text-lg bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hidden sm:inline">
-              ML Predictor
+              Group 2 ML Predictor
             </span>
           </div>
 
@@ -38,10 +38,10 @@ export default function Navigation({ currentPage, setCurrentPage }: NavigationPr
               <button
                 key={item.id}
                 onClick={() => setCurrentPage(item.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-foreground ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   currentPage === item.id
                     ? "bg-blue-500/20 text-blue-300 border border-blue-500/50 glow-blue"
-                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                    : "text-black hover:text-gray-800 hover:bg-white/5"
                 }`}
               >
                 {item.label}
@@ -51,7 +51,7 @@ export default function Navigation({ currentPage, setCurrentPage }: NavigationPr
 
           {/* Mobile Menu Button */}
           <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={24} className="text-black" /> : <Menu size={24} className="text-black" />}
           </button>
         </div>
 
@@ -68,7 +68,7 @@ export default function Navigation({ currentPage, setCurrentPage }: NavigationPr
                 className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   currentPage === item.id
                     ? "bg-blue-500/20 text-blue-300 border border-blue-500/50"
-                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                    : "text-black hover:text-gray-800 hover:bg-white/5"
                 }`}
               >
                 {item.label}

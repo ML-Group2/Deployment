@@ -31,11 +31,14 @@ export const mockModels: ModelInfo[] = [
   },
 ]
 
-export function generateMockPrediction(features: Record<string, number>): PredictionResponse {
-  const baseValue = Object.values(features).reduce((a, b) => a + b, 0) / Object.keys(features).length
+export function generateMockPrediction(sentence: string): PredictionResponse {
+  // Generate prediction based on sentence length and content
+  const sentenceLength = sentence.length
+  const wordCount = sentence.split(/\s+/).length
+  const baseValue = (sentenceLength + wordCount * 10) / 100
   const selectedModel = mockModels[Math.floor(Math.random() * mockModels.length)]
   return {
-    prediction: baseValue * (0.8 + Math.random() * 0.4),
+    prediction: Math.max(0, Math.min(100, baseValue * (0.8 + Math.random() * 0.4))),
     confidence: selectedModel.id === "logistic-regression" ? 80 + Math.random() * 15 : 75 + Math.random() * 20,
     model_id: selectedModel.id,
     timestamp: new Date().toISOString(),
