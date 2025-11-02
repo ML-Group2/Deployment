@@ -43,7 +43,7 @@ export default function Hero({ setCurrentPage }: HeroProps) {
               <span className="text-chart-3">Prediction Platform</span>
             </h1>
 
-            <p className="text-xl text-balance max-w-2xl mx-auto leading-relaxed text-foreground">
+            <p className="text-xl text-balance max-w-2xl mx-auto leading-relaxed text-black/80">
               Harness the power of machine learning to make accurate predictions. Compare models, analyze data, and
               deploy predictions at scale with our cutting-edge platform.
             </p>
@@ -67,44 +67,44 @@ export default function Hero({ setCurrentPage }: HeroProps) {
             </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4 pt-12 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            <div className="glass rounded-2xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="text-3xl font-bold text-blue-400 animate-count-up">
-                {metrics.predictions.toLocaleString()}
+          <div className="grid md:grid-cols-3 gap-6 pt-12 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+            <div className="glass rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 border border-blue-500/30 group">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent animate-count-up">
+                {metrics.predictions.toLocaleString()}+
               </div>
-              <p className="text-sm text-gray-400 mt-1">Predictions Made</p>
+              <p className="text-sm text-black/70 mt-2 font-medium group-hover:text-black transition-colors">Predictions Made</p>
             </div>
-            <div className="glass rounded-2xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="text-3xl font-bold text-cyan-400 animate-count-up">{metrics.accuracy}%</div>
-              <p className="text-sm text-gray-400 mt-1">Average Accuracy</p>
+            <div className="glass rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 border border-cyan-500/30 group">
+              <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent animate-count-up">{metrics.accuracy}%</div>
+              <p className="text-sm text-black/70 mt-2 font-medium group-hover:text-black transition-colors">Average Accuracy</p>
             </div>
-            <div className="glass rounded-2xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="text-3xl font-bold text-purple-400 animate-count-up">{metrics.models}</div>
-              <p className="text-sm text-gray-400 mt-1">Models Compared</p>
+            <div className="glass rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2 border border-purple-500/30 group">
+              <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent animate-count-up">{metrics.models}</div>
+              <p className="text-sm text-black/70 mt-2 font-medium group-hover:text-black transition-colors">Models Compared</p>
             </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 pt-12">
-            <div className="glass rounded-2xl p-6 group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/40 transition-colors">
-                <Zap className="w-6 h-6 text-blue-400" />
+            <div className="glass rounded-2xl p-8 group transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 border border-blue-500/30">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500/30 to-blue-600/30 flex items-center justify-center mx-auto mb-4 group-hover:bg-gradient-to-br group-hover:from-blue-500/50 group-hover:to-blue-600/50 transition-all shadow-lg shadow-blue-500/20">
+                <Zap className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">Fast Predictions</h3>
-              <p className="text-sm text-gray-400">Get predictions in milliseconds with optimized models</p>
+              <h3 className="font-bold text-xl mb-3 text-black">Fast Predictions</h3>
+              <p className="text-sm text-black/70 group-hover:text-black/90 transition-colors">Get predictions in milliseconds with optimized models</p>
             </div>
-            <div className="glass rounded-2xl p-6 group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-500/40 transition-colors">
-                <BarChart3 className="w-6 h-6 text-cyan-400" />
+            <div className="glass rounded-2xl p-8 group transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 border border-cyan-500/30">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/30 to-cyan-600/30 flex items-center justify-center mx-auto mb-4 group-hover:bg-gradient-to-br group-hover:from-cyan-500/50 group-hover:to-cyan-600/50 transition-all shadow-lg shadow-cyan-500/20">
+                <BarChart3 className="w-7 h-7 text-cyan-400" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">Model Comparison</h3>
-              <p className="text-sm text-gray-400">Compare multiple models side-by-side to find the best fit</p>
+              <h3 className="font-bold text-xl mb-3 text-black">Model Comparison</h3>
+              <p className="text-sm text-black/70 group-hover:text-black/90 transition-colors">Compare multiple models side-by-side to find the best fit</p>
             </div>
-            <div className="glass rounded-2xl p-6 group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500/40 transition-colors">
-                <Cpu className="w-6 h-6 text-purple-400" />
+            <div className="glass rounded-2xl p-8 group transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2 border border-purple-500/30">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/30 to-purple-600/30 flex items-center justify-center mx-auto mb-4 group-hover:bg-gradient-to-br group-hover:from-purple-500/50 group-hover:to-purple-600/50 transition-all shadow-lg shadow-purple-500/20">
+                <Cpu className="w-7 h-7 text-purple-400" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">Batch Processing</h3>
-              <p className="text-sm text-gray-400">Process large datasets efficiently with batch predictions</p>
+              <h3 className="font-bold text-xl mb-3 text-black">Batch Processing</h3>
+              <p className="text-sm text-black/70 group-hover:text-black/90 transition-colors">Process large datasets efficiently with batch predictions</p>
             </div>
           </div>
         </div>

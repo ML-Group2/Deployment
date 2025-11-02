@@ -3,7 +3,7 @@ import { config } from "./config"
 const API_BASE_URL = config.api.baseUrl
 
 export interface PredictionRequest {
-  features: Record<string, number>
+  sentence: string
   model_id?: string
 }
 

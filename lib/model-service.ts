@@ -6,7 +6,7 @@ const USE_MOCK_DATA = process.env.NEXT_PUBLIC_USE_MOCK_DATA !== "false"
 export async function getPrediction(request: PredictionRequest) {
   if (USE_MOCK_DATA) {
     await new Promise((resolve) => setTimeout(resolve, 500))
-    return generateMockPrediction(request.features)
+    return generateMockPrediction(request.sentence)
   }
 
   return predict(request)
