@@ -3,6 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 from typing import Optional
 
+# Importing the functions for both models (Naive Bayes and Logistic Regression)
+from logistic_regression_model import classify_message
+from naive_bayes_model import predict_message
+
 app = FastAPI(title="ML Deployment Backend")
 
 # Enable CORS for frontend access
@@ -55,17 +59,16 @@ def get_models():
 
 # --- POST /predict ---
 @app.post("/api/predict")
-def predict(features: dict, model_id: Optional[str] = None):
+async def predict(features: dict, model_id: Optional[str] = None):
     # placeholder prediction
-    prediction = 42.5
-    confidence = 87.3
-    used_model = model_id if model_id else "logistic-regression"
-    return {
-        "prediction": prediction,
-        "confidence": confidence,
-        "model_id": used_model,
-        "timestamp": datetime.utcnow().isoformat()
-    }
+
+    if model_id == "naive-bayes":
+        return predict_message(features["sentence"])
+    elif model_id == "logistic-regression":
+        return classify_message(features["sentence"])
+    else:
+        return {"message": "Invalid model_id"}
+
 
 # --- POST /batch-predict ---
 @app.post("/api/batch-predict")

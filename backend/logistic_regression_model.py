@@ -1,5 +1,7 @@
 import pickle
 import os
+import sys
+
 import numpy as np
 
 def load_logistic_model_and_vectorizer():
@@ -7,11 +9,13 @@ def load_logistic_model_and_vectorizer():
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Move up one level and go into models folder
-    models_path = os.path.normpath(os.path.join(current_dir, "..", "models"))
+    models_path = current_dir
+
+    # os.path.normpath(os.path.join(current_dir, "..", "models")))
 
     # Define model paths
-    model_path = os.path.join(models_path, "logistic_regression.pkl")
-    vectorizer_path = os.path.join(models_path, "tfidf_vectorizer.pkl")
+    model_path = os.path.join(models_path, "logistic_regression_model.pkl")
+    vectorizer_path = os.path.join(models_path, "tfidf_vectorizer_model.pkl")
 
     # Print the exact paths being used
     print(f"\n[DEBUG] Checking model path: {model_path}")
