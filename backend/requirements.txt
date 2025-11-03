@@ -4,3 +4,4 @@ joblib
 uvicorn
 fastapi
 typing
+pandas
