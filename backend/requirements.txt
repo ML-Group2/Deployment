@@ -1,3 +1,4 @@
+python_version == "3.11"
 numpy
 scikit-learn==1.2.2
 joblib
