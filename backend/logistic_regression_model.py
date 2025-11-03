@@ -1,6 +1,7 @@
 import pickle
 import os
 import sys
+import joblib
 
 import numpy as np
 
@@ -14,8 +15,8 @@ def load_logistic_model_and_vectorizer():
     # os.path.normpath(os.path.join(current_dir, "..", "models")))
 
     # Define model paths
-    model_path = os.path.join(models_path, "logistic_regression_model.pkl")
-    vectorizer_path = os.path.join(models_path, "tfidf_vectorizer_model.pkl")
+    model_path = os.path.join(models_path, "logistic_regression.pkl")
+    vectorizer_path = os.path.join(models_path, "tfidf_vectorizer.pkl")
 
     # Print the exact paths being used
     print(f"\n[DEBUG] Checking model path: {model_path}")
@@ -29,10 +30,10 @@ def load_logistic_model_and_vectorizer():
 
     # Load them
     with open(model_path, "rb") as model_file:
-        logistic_model = pickle.load(model_file)
+        logistic_model = joblib.load(model_file)
 
     with open(vectorizer_path, "rb") as vec_file:
-        tfidf_vectorizer = pickle.load(vec_file)
+        tfidf_vectorizer = joblib.load(vec_file)
 
     return logistic_model, tfidf_vectorizer
 
