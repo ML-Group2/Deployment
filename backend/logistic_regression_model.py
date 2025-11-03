@@ -37,7 +37,6 @@ def load_logistic_model_and_vectorizer():
 
     return logistic_model, tfidf_vectorizer
 
-
 def classify_message(message):
     logistic_model, tfidf_vectorizer = load_logistic_model_and_vectorizer()
     transformed_message = tfidf_vectorizer.transform([message])
