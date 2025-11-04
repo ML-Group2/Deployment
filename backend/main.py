@@ -23,6 +23,10 @@ app.add_middleware(
 def root():
     return {"message": "FastAPI backend is running!"}
 
+@app.get("/api")
+def default():
+    return {"message": "API is Running!"}
+
 # --- GET /models ---
 @app.get("/api/models")
 def get_models():
