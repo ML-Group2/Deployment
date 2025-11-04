@@ -51,6 +51,7 @@ export async function getPrediction(request: PredictionRequest) {
     confidence: typeof confidence === "number" ? confidence : (typeof numericPrediction === "number" ? numericPrediction : 0),
     model_id: request.model_id || apiResponse?.model_id || "default",
     timestamp: apiResponse?.timestamp || new Date().toISOString(),
+    label: typeof apiResponse?.prediction === "string" ? apiResponse.prediction : undefined,
   }
 
   console.log("[getPrediction] normalized result:", normalized)

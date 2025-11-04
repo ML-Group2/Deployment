@@ -12,6 +12,7 @@ export interface PredictionResponse {
   confidence: number
   model_id: string
   timestamp: string
+  label?: string
 }
 
 export interface BatchPredictionRequest {

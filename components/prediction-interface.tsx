@@ -30,6 +30,7 @@ export default function PredictionInterface() {
           prediction: response.prediction,
           confidence: response.confidence,
           model: response.model_id,
+          label: response.label,
           sentence: sentence.trim().substring(0, 50) + (sentence.length > 50 ? "..." : ""),
         },
       ])
@@ -47,10 +48,11 @@ export default function PredictionInterface() {
     if (history.length === 0) return
 
     const csv = [
-      ["Timestamp", "Sentence", "Prediction", "Confidence", "Model"].join(","),
+      ["Timestamp", "Sentence", "Label", "Prediction", "Confidence", "Model"].join(","),
       ...history.map((h) => [
         h.timestamp,
         `"${(h.sentence || "").replace(/"/g, '""')}"`,
+        h.label || "",
         h.prediction.toFixed(2),
         h.confidence.toFixed(1),
         h.model,
@@ -156,6 +158,11 @@ export default function PredictionInterface() {
                     <CheckCircle2 className="w-6 h-6 text-green-400" />
                     Prediction Result
                   </h3>
+                  {result.label && (
+                    <span className="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-blue-500/15 text-blue-500 font-bold uppercase tracking-wide">
+                      {result.label}
+                    </span>
+                  )}
                 </div>
                 <span className="text-xs px-3 py-1 rounded-full bg-green-500/20 text-green-400 font-bold">Success</span>
               </div>
@@ -267,6 +274,7 @@ export default function PredictionInterface() {
                     <tr className="border-b border-gray-200">
                       <th className="text-left py-3 px-4 font-bold text-black">Time</th>
                       <th className="text-left py-3 px-4 font-bold text-black">Sentence</th>
+                      <th className="text-left py-3 px-4 font-bold text-black">Label</th>
                       <th className="text-left py-3 px-4 font-bold text-black">Prediction</th>
                       <th className="text-left py-3 px-4 font-bold text-black">Confidence</th>
                       <th className="text-left py-3 px-4 font-bold text-black">Model</th>
@@ -277,6 +285,7 @@ export default function PredictionInterface() {
                       <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                         <td className="py-3 px-4 text-black/70 text-sm">{h.timestamp}</td>
                         <td className="py-3 px-4 text-black max-w-xs truncate" title={h.sentence}>{h.sentence || "N/A"}</td>
+                        <td className="py-3 px-4 text-black/80 text-xs font-bold uppercase">{h.label || ""}</td>
                         <td className="py-3 px-4 font-bold text-blue-400">{h.prediction.toFixed(2)}</td>
                         <td className="py-3 px-4 font-bold text-cyan-400">{h.confidence.toFixed(1)}%</td>
                         <td className="py-3 px-4 text-black/60 text-xs font-medium">{h.model}</td>
