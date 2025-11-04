@@ -22,6 +22,7 @@ export default function PredictionInterface() {
         sentence: sentence.trim(),
         model_id: selectedModel || undefined,
       })
+      console.log("[PredictionInterface] predict() response:", response)
       setHistory((prev) => [
         ...prev,
         {
