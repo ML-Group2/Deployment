@@ -1,7 +1,7 @@
 export const config = {
   // API Configuration
   api: {
-    baseUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api",
+    baseUrl: process.env.NEXT_PUBLIC_API_URL || "https://ml-group-work-deployment.onrender.com/api",
     timeout: 30000,
     retries: 3,
   },

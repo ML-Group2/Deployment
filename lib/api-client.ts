@@ -8,10 +8,11 @@ export interface PredictionRequest {
 }
 
 export interface PredictionResponse {
-  prediction: number
+  prediction: string
   confidence: number
   model_id: string
   timestamp: string
+  label?: string
 }
 
 export interface BatchPredictionRequest {
