@@ -30,7 +30,7 @@ export default function PredictionInterface() {
           prediction: response.prediction,
           confidence: response.confidence,
           model: response.model_id,
-          label: response.label,
+          label: response.prediction,
           sentence: sentence.trim().substring(0, 50) + (sentence.length > 50 ? "..." : ""),
         },
       ])
@@ -53,7 +53,7 @@ export default function PredictionInterface() {
         h.timestamp,
         `"${(h.sentence || "").replace(/"/g, '""')}"`,
         h.label || "",
-        h.prediction.toFixed(2),
+        h.prediction,
         h.confidence.toFixed(1),
         h.model,
       ].join(",")),
@@ -158,9 +158,9 @@ export default function PredictionInterface() {
                     <CheckCircle2 className="w-6 h-6 text-green-400" />
                     Prediction Result
                   </h3>
-                  {result.label && (
+                  {result.prediction && (
                     <span className="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-blue-500/15 text-blue-500 font-bold uppercase tracking-wide">
-                      {result.label}
+                      {result.prediction}
                     </span>
                   )}
                 </div>
@@ -170,7 +170,7 @@ export default function PredictionInterface() {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="p-4 rounded-lg bg-gray-50 border border-blue-400/30">
                   <p className="text-xs text-black/70 uppercase tracking-wide font-bold mb-2">Prediction</p>
-                  <p className="text-4xl font-bold text-blue-400">{result.prediction.toFixed(2)}</p>
+                  <p className="text-4xl font-bold text-blue-400">{result.prediction}</p>
                 </div>
                 <div className="p-4 rounded-lg bg-gray-50 border border-cyan-400/30">
                   <p className="text-xs text-black/70 uppercase tracking-wide font-bold mb-2">Confidence</p>
@@ -249,14 +249,6 @@ export default function PredictionInterface() {
                   <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.5)" />
                   <Tooltip contentStyle={{ backgroundColor: "#1F2937", border: "1px solid rgba(255,255,255,0.1)" }} />
                   <Line
-                    yAxisId="left"
-                    type="monotone"
-                    dataKey="prediction"
-                    stroke="#3B82F6"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Line
                     yAxisId="right"
                     type="monotone"
                     dataKey="confidence"
@@ -285,8 +277,8 @@ export default function PredictionInterface() {
                       <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                         <td className="py-3 px-4 text-black/70 text-sm">{h.timestamp}</td>
                         <td className="py-3 px-4 text-black max-w-xs truncate" title={h.sentence}>{h.sentence || "N/A"}</td>
-                        <td className="py-3 px-4 text-black/80 text-xs font-bold uppercase">{h.label || ""}</td>
-                        <td className="py-3 px-4 font-bold text-blue-400">{h.prediction.toFixed(2)}</td>
+                        <td className="py-3 px-4 text-black/80 text-xs font-bold uppercase">{h.prediction || ""}</td>
+                        <td className="py-3 px-4 font-bold text-blue-400">{h.confidence.toFixed(1)}%</td>
                         <td className="py-3 px-4 font-bold text-cyan-400">{h.confidence.toFixed(1)}%</td>
                         <td className="py-3 px-4 text-black/60 text-xs font-medium">{h.model}</td>
                       </tr>

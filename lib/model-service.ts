@@ -35,23 +35,18 @@ export async function getPrediction(request: PredictionRequest) {
   // Scale to 0-100 if backend returns 0-1
   if (typeof confidence === "number" && confidence <= 1) confidence = confidence * 100
 
-  // Derive numeric prediction
-  let numericPrediction = pickNumber(apiResponse?.prediction)
-
-  // If prediction is a string label, map to numeric for display
-  if (numericPrediction === undefined && typeof apiResponse?.prediction === "string") {
-    const label = apiResponse.prediction.toLowerCase()
-    if (["spam", "positive", "true", "yes"].includes(label)) numericPrediction = 100
-    else if (["ham", "negative", "false", "no"].includes(label)) numericPrediction = 0
-  }
+  // Pick label directly from backend (e.g., "Ham" | "Spam")
+  const labelString: string | undefined =
+    typeof apiResponse?.prediction === "string"
+      ? apiResponse.prediction
+      : (typeof apiResponse?.label === "string" ? apiResponse.label : undefined)
 
   const normalized: PredictionResponse = {
-    // Display numeric prediction as the confidence value for consistent UI
-    prediction: typeof confidence === "number" ? confidence : (typeof numericPrediction === "number" ? numericPrediction : 0),
-    confidence: typeof confidence === "number" ? confidence : (typeof numericPrediction === "number" ? numericPrediction : 0),
+    // Prediction is the label string (Ham/Spam) per backend contract
+    prediction: labelString || "Unknown",
+    confidence: typeof confidence === "number" ? confidence : 0,
     model_id: request.model_id || apiResponse?.model_id || "default",
     timestamp: apiResponse?.timestamp || new Date().toISOString(),
-    label: typeof apiResponse?.prediction === "string" ? apiResponse.prediction : undefined,
   }
 
   console.log("[getPrediction] normalized result:", normalized)
