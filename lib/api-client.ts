@@ -45,10 +45,12 @@ export interface ModelInfo {
 // Single prediction
 export async function predict(request: PredictionRequest): Promise<PredictionResponse> {
   try {
-    const response = await fetch(`${API_BASE_URL}/predict`, {
+    const url = `${API_BASE_URL}/predict${request.model_id ? `?model_id=${encodeURIComponent(request.model_id)}` : ""}`
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(request),
+      // Backend expects model_id as query param; send only the sentence in body
+      body: JSON.stringify({ sentence: request.sentence }),
     })
 
     if (!response.ok) throw new Error(`API error: ${response.statusText}`)

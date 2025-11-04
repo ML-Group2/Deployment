@@ -1,4 +1,4 @@
-import { predict, batchPredict, getModels, type PredictionRequest, type BatchPredictionRequest } from "./api-client"
+import { predict, batchPredict, getModels, type PredictionRequest, type BatchPredictionRequest, type PredictionResponse } from "./api-client"
 import { generateMockPrediction, mockModels } from "./mock-data"
 
 const USE_MOCK_DATA = process.env.NEXT_PUBLIC_USE_MOCK_DATA !== "false"
@@ -9,7 +9,52 @@ export async function getPrediction(request: PredictionRequest) {
     return generateMockPrediction(request.sentence)
   }
 
-  return predict(request)
+  console.log("[getPrediction] request:", request)
+  const apiResponse: any = await predict(request)
+  console.log("[getPrediction] raw API response:", apiResponse)
+
+  // Normalize varying backend shapes to the UI's expected PredictionResponse
+  const pickNumber = (...values: any[]): number | undefined => {
+    for (const v of values) {
+      if (typeof v === "number" && !Number.isNaN(v)) return v
+      if (typeof v === "string" && v.trim() !== "" && !Number.isNaN(Number(v))) return Number(v)
+    }
+    return undefined
+  }
+
+  // Try multiple field names commonly used by different backends
+  let confidence = pickNumber(
+    apiResponse?.confidence,
+    apiResponse?.probability,
+    apiResponse?.prob,
+    apiResponse?.score,
+    apiResponse?.confidence_score,
+    apiResponse?.prediction_score
+  )
+
+  // Scale to 0-100 if backend returns 0-1
+  if (typeof confidence === "number" && confidence <= 1) confidence = confidence * 100
+
+  // Derive numeric prediction
+  let numericPrediction = pickNumber(apiResponse?.prediction)
+
+  // If prediction is a string label, map to numeric for display
+  if (numericPrediction === undefined && typeof apiResponse?.prediction === "string") {
+    const label = apiResponse.prediction.toLowerCase()
+    if (["spam", "positive", "true", "yes"].includes(label)) numericPrediction = 100
+    else if (["ham", "negative", "false", "no"].includes(label)) numericPrediction = 0
+  }
+
+  const normalized: PredictionResponse = {
+    // Display numeric prediction as the confidence value for consistent UI
+    prediction: typeof confidence === "number" ? confidence : (typeof numericPrediction === "number" ? numericPrediction : 0),
+    confidence: typeof confidence === "number" ? confidence : (typeof numericPrediction === "number" ? numericPrediction : 0),
+    model_id: request.model_id || apiResponse?.model_id || "default",
+    timestamp: apiResponse?.timestamp || new Date().toISOString(),
+  }
+
+  console.log("[getPrediction] normalized result:", normalized)
+  return normalized
 }
 
 export async function submitBatchPrediction(request: BatchPredictionRequest) {
